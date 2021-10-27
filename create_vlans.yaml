@@ -41,5 +41,4 @@
         name: "vlan{{ vlanRange }}"
         id: "{{ vlanRange }}"
         native: 'yes'
-      with_sequence: "{{ vlanRange }}"
       when: '"-" not in vlanRange'
