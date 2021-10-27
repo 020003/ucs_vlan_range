@@ -31,4 +31,4 @@
         id: "{{ item }}"
         native: 'yes'
       with_sequence: "{{ vlanRange }}"
-      when: vlanRange is match ("-")
+      when: '"-" in vlanRange'
