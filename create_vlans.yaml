@@ -21,7 +21,7 @@
 
 
 
-    - name: Add VLANS {{ item }}
+    - name: "Add VLANS {{ item }}"
       cisco.ucs.ucs_vlans:
         hostname: "{{ inventory_hostname }}"
         username: "{{ ansible_user }}"
