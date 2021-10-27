@@ -22,7 +22,7 @@
 
 
 
-    - name: "Add VLANS {{ item }}"
+    - name: "Add VLAN Range"
       cisco.ucs.ucs_vlans:
         hostname: "{{ inventory_hostname }}"
         username: "{{ ansible_user }}"
@@ -32,3 +32,14 @@
         native: 'yes'
       with_sequence: "{{ vlanRange }}"
       when: '"-" in vlanRange'
+
+    - name: "Add VLAN {{ item }}"
+      cisco.ucs.ucs_vlans:
+        hostname: "{{ inventory_hostname }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        name: "vlan{{ vlanRange }}"
+        id: "{{ vlanRange }}"
+        native: 'yes'
+      with_sequence: "{{ vlanRange }}"
+      when: '"-" not in vlanRange'
