@@ -1,0 +1,32 @@
+- name: Play 1 Create VLANs by range
+  hosts: all
+  connection: local
+
+  vars_prompt:
+  
+      - name: ansible_user
+        prompt: "What is your username?"
+        private: no
+  
+      - name: ansible_password
+        prompt: "What is your password?"
+        private: yes
+      
+      - name: vlanRange
+        prompt: "Enter VLAN Range (20-40):"
+        private: no
+
+
+  tasks:
+
+
+
+    - name: Add VLANS {{ item }}
+      cisco.ucs.ucs_vlans:
+        hostname: "{{ inventory_hostname }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        name: "vlan{{ item }}"
+        id: "{{ item }}"
+        native: 'yes'
+      with_sequence: "{{ vlanRange }}"
