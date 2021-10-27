@@ -17,6 +17,7 @@
         private: no
 
 
+
   tasks:
 
 
@@ -30,3 +31,4 @@
         id: "{{ item }}"
         native: 'yes'
       with_sequence: "{{ vlanRange }}"
+      when: vlanRange is match ("-")
